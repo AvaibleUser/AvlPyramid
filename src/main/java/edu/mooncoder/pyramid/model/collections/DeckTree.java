@@ -4,6 +4,7 @@ import edu.mooncoder.pyramid.exceptions.AlreadyExistentCardException;
 import edu.mooncoder.pyramid.exceptions.NodeWithChildrenException;
 import edu.mooncoder.pyramid.exceptions.NotExistsInTheTreeException;
 import edu.mooncoder.pyramid.model.enums.Order;
+import edu.mooncoder.pyramid.model.rederers.TreeRenderer;
 
 public class DeckTree {
     private Node root;
@@ -63,6 +64,26 @@ public class DeckTree {
             root = null;
         } else {
             root.delete(toSearch);
+        }
+    }
+
+    public void render() {
+        if (root == null) return;
+
+        TreeRenderer renderer = new TreeRenderer();
+        JsonList nodeList = new JsonList();
+
+        int index = 0;
+
+        root.addRenderDataToList(nodeList, null, renderer, 0);
+
+        for (Object[] cardInfo : nodeList) {
+            int depth = (int) cardInfo[0];
+            String[] nodes = ((String) cardInfo[1]).split("\\|");
+            String card = nodes[0];
+
+            int factor = 2 + (depth < 4 ? 0 : depth % 3);
+            renderer.setAttributesToNode(card, 1 < nodes.length ? nodes[1] : null, depth * factor, index++);
         }
     }
 

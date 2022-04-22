@@ -10,15 +10,15 @@ import edu.mooncoder.pyramid.model.enums.Suite;
 
 import java.util.Map;
 
-public class JsonToDeckSet {
-    private static final JsonToDeckSet inst = new JsonToDeckSet();
+public class DeckTreeManager {
+    private static final DeckTreeManager inst = new DeckTreeManager();
     private final DeckTree deck;
 
-    private JsonToDeckSet() {
+    private DeckTreeManager() {
         this.deck = new DeckTree();
     }
 
-    public static JsonToDeckSet getInstance() {
+    public static DeckTreeManager getInstance() {
         return inst;
     }
 
@@ -92,11 +92,7 @@ public class JsonToDeckSet {
         }
     }
 
-    public String toString(Order order) {
-        return deck.toString(order);
-    }
-
-    public String toString(int level) {
-        return deck.toString(level);
+    DeckTree getDeck() {
+        return deck;
     }
 }

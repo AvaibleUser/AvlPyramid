@@ -1,6 +1,7 @@
 package edu.mooncoder.pyramid.endpoints;
 
-import edu.mooncoder.pyramid.controllers.JsonToDeckSet;
+import edu.mooncoder.pyramid.controllers.DeckTreeManager;
+import edu.mooncoder.pyramid.controllers.OutputDeckTreeData;
 import edu.mooncoder.pyramid.model.enums.Order;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,7 +20,7 @@ public class ShowDeck extends HttpServlet {
         try {
             Order order = Order.valueOf(transversal.toUpperCase());
 
-            response.getWriter().print(JsonToDeckSet.getInstance().toString(order));
+            response.getWriter().print(OutputDeckTreeData.getDeckAsJson(order));
         } catch (NullPointerException e) {
             response.sendError(400, "No se encontro el parametro 'transversal'.");
         }

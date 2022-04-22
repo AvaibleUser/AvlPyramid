@@ -1,6 +1,6 @@
 package edu.mooncoder.pyramid.endpoints;
 
-import edu.mooncoder.pyramid.controllers.JsonToDeckSet;
+import edu.mooncoder.pyramid.controllers.OutputDeckTreeData;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,7 +13,7 @@ public class ShowLevel extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int level = Integer.parseInt(request.getParameter("level"));
-            response.getWriter().print(JsonToDeckSet.getInstance().toString(level));
+            response.getWriter().print(OutputDeckTreeData.getDeckLevelAsJson(level));
         } catch (NullPointerException e) {
             response.sendError(400, "No se encontro el parametro 'level'.");
         } catch (NumberFormatException e) {

@@ -3,6 +3,7 @@ package edu.mooncoder.pyramid.model.collections;
 import edu.mooncoder.pyramid.exceptions.AlreadyExistentCardException;
 import edu.mooncoder.pyramid.exceptions.NodeWithChildrenException;
 import edu.mooncoder.pyramid.exceptions.NotExistsInTheTreeException;
+import edu.mooncoder.pyramid.model.rederers.TreeRenderer;
 
 class Node {
     private final int card;
@@ -143,6 +144,19 @@ class Node {
             rightChild.toStringPostOrder(list);
         }
         list.add(this.rep);
+    }
+
+    public void addRenderDataToList(JsonList nodeList, Node parent, TreeRenderer renderer, int depth) {
+        if (leftChild != null) {
+            leftChild.addRenderDataToList(nodeList, this, renderer, depth + 1);
+        }
+
+        nodeList.add(parent == null ? rep : rep + "|" + parent, depth);
+        renderer.addNode(rep);
+
+        if (rightChild != null) {
+            rightChild.addRenderDataToList(nodeList, this, renderer, depth + 1);
+        }
     }
 
     public boolean hasChildren() {

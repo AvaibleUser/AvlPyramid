@@ -1,7 +1,7 @@
 package edu.mooncoder.pyramid.endpoints;
 
 import com.google.gson.JsonSyntaxException;
-import edu.mooncoder.pyramid.controllers.JsonToDeckSet;
+import edu.mooncoder.pyramid.controllers.DeckTreeManager;
 import edu.mooncoder.pyramid.exceptions.ExceptionWithStatus;
 import edu.mooncoder.pyramid.model.contracts.ServletTools;
 import jakarta.servlet.ServletException;
@@ -19,7 +19,7 @@ public class DeleteCard extends HttpServlet implements ServletTools {
         String json = getBody(request);
 
         try {
-            JsonToDeckSet.getInstance().deleteCards(json);
+            DeckTreeManager.getInstance().deleteCards(json);
         } catch (ExceptionWithStatus e) {
             response.sendError(e.getStatus(), e.getMessage());
         } catch (JsonSyntaxException e) {

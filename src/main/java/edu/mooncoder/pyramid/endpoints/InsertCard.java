@@ -1,7 +1,7 @@
 package edu.mooncoder.pyramid.endpoints;
 
 import com.google.gson.JsonSyntaxException;
-import edu.mooncoder.pyramid.controllers.JsonToDeckSet;
+import edu.mooncoder.pyramid.controllers.DeckTreeManager;
 import edu.mooncoder.pyramid.exceptions.ExceptionWithStatus;
 import edu.mooncoder.pyramid.model.contracts.ServletTools;
 import jakarta.servlet.ServletException;
@@ -18,7 +18,7 @@ public class InsertCard extends HttpServlet implements ServletTools {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String json = getBody(request);
         try {
-            JsonToDeckSet.getInstance().addCardToDeck(json);
+            DeckTreeManager.getInstance().addCardToDeck(json);
         } catch (ExceptionWithStatus e) {
             response.sendError(e.getStatus(), e.getMessage());
         } catch (JsonSyntaxException e) {
