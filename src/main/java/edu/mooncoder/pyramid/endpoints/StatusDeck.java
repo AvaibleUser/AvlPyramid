@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ImagePlaceholder", urlPatterns = {"/status-avltree"})
+@WebServlet(name = "TreeStatusPath", urlPatterns = {"/status-avltree"})
 public class StatusDeck extends HttpServlet {
 
     @Override

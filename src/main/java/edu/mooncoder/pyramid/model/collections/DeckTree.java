@@ -68,9 +68,13 @@ public class DeckTree {
     }
 
     public void render() {
-        if (root == null) return;
-
         TreeRenderer renderer = new TreeRenderer();
+        if (root == null) {
+            renderer.addNode(" Tree   Not   Found");
+            renderer.setAttributesToNode(" Tree   Not   Found", null, 0, 0);
+            return;
+        }
+
         JsonList nodeList = new JsonList();
 
         int index = 0;
