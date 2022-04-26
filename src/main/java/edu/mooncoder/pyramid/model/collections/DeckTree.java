@@ -50,10 +50,10 @@ public class DeckTree {
 
         if (parent1.searchParent(parent2) == parent1) {
             parent2.delete(toSearch2);
-            parent1.delete(toSearch1);
+            root.delete(toSearch1);
         } else {
-            parent1.delete(toSearch1);
-            parent2.delete(toSearch2);
+            root.delete(toSearch1);
+            root.delete(toSearch2);
         }
     }
 
@@ -70,8 +70,8 @@ public class DeckTree {
     public void render() {
         TreeRenderer renderer = new TreeRenderer();
         if (root == null) {
-            renderer.addNode(" Tree   Not   Found");
-            renderer.setAttributesToNode(" Tree   Not   Found", null, 0, 0);
+            renderer.addNode(" Tree     Is    Empty");
+            renderer.setAttributesToNode(" Tree     Is    Empty", null, 0, 0);
             return;
         }
 

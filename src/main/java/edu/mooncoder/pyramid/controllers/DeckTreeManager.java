@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import edu.mooncoder.pyramid.exceptions.*;
 import edu.mooncoder.pyramid.model.collections.DeckTree;
-import edu.mooncoder.pyramid.model.enums.Order;
 import edu.mooncoder.pyramid.model.enums.Suite;
 
 import java.util.Map;

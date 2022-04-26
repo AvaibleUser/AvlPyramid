@@ -37,15 +37,11 @@ public class TreeRenderer extends SwingFileSinkImages {
 
     private static TreeRenderer instance;
 
-    private final Graph graph;
-
     static {
         System.setProperty("org.graphstream.ui", "swing");
     }
 
-    public static TreeRenderer getInstance() {
-        return instance;
-    }
+    private final Graph graph;
 
     public TreeRenderer() {
         graph = new MultiGraph("Avl Tree");
@@ -55,6 +51,10 @@ public class TreeRenderer extends SwingFileSinkImages {
         graph.setAttribute("ui.quality");
 
         instance = this;
+    }
+
+    public static TreeRenderer getInstance() {
+        return instance;
     }
 
     @Override
