@@ -25,10 +25,10 @@ public class DeckTreeManager {
         Suite suite = Suite.getSuite(cardInfo.charAt(cardInfo.length() - 1));
 
         return switch (cardInfo.substring(0, cardInfo.length() - 1)) {
-            case "As" -> 1;
-            case "J" -> 11;
-            case "Q" -> 12;
-            case "K" -> 13;
+            case "As", "A", "1" -> 1;
+            case "J", "11" -> 11;
+            case "Q", "12" -> 12;
+            case "K", "13" -> 13;
             case "2", "3", "4", "5", "6", "7", "8", "9", "10" ->
                     Integer.parseInt(cardInfo.substring(0, cardInfo.length() - 1));
             default -> {
