@@ -9,13 +9,13 @@ import edu.mooncoder.pyramid.model.rederers.TreeRenderer;
 public class DeckTree {
     private Node root;
 
-    private static boolean verifyNodeWithChildren(Node toSearch, Node toVerify) throws NodeWithChildrenException, NotExistsInTheTreeException {
+    private boolean verifyNodeWithChildren(Node toSearch, Node toVerify) throws NodeWithChildrenException, NotExistsInTheTreeException {
         if (Node.isThatNode(toSearch, toVerify)) {
             if (toVerify.hasChildren()) {
                 throw new NodeWithChildrenException(toVerify.toString());
             }
             return true;
-        } else if (toVerify == null) {
+        } else if (toVerify == null && !toSearch.toString().equals(root.toString())) {
             throw new NotExistsInTheTreeException(toSearch.toString());
         }
         return false;

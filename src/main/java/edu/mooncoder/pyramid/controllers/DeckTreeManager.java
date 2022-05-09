@@ -22,7 +22,12 @@ public class DeckTreeManager {
     }
 
     private int getCardValue(String cardInfo) throws CardOutOfBoundsException {
-        Suite suite = Suite.getSuite(cardInfo.charAt(cardInfo.length() - 1));
+        Suite suite;
+        try {
+            suite = Suite.getSuite(cardInfo.charAt(cardInfo.length() - 1));
+        } catch (CardOutOfBoundsException e) {
+            throw new CardOutOfBoundsException(cardInfo);
+        }
 
         return switch (cardInfo.substring(0, cardInfo.length() - 1)) {
             case "As", "A", "1" -> 1;
@@ -31,9 +36,7 @@ public class DeckTreeManager {
             case "K", "13" -> 13;
             case "2", "3", "4", "5", "6", "7", "8", "9", "10" ->
                     Integer.parseInt(cardInfo.substring(0, cardInfo.length() - 1));
-            default -> {
-                throw new CardOutOfBoundsException(cardInfo);
-            }
+            default -> throw new CardOutOfBoundsException(cardInfo);
         } + suite.getValue();
     }
 
